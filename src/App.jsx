@@ -17,18 +17,19 @@ function App() {
       setTodos(todos)
     }
   }, [])
-  
 
-  const saveToLS = (params) => {
+  useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos))
-  }
+  }, [todos])
+  
+  
+  // const saveToLS = (params) => {
+  //   localStorage.setItem("todos", JSON.stringify(todos))
+  // }
 
   const toggleFinished = (e) => {
     setshowFinished(!showFinished)
   }
-  
-  
-
 
   const handleEdit = (e, id)=>{ 
     let t = todos.filter(i=>i.id === id) 
@@ -37,7 +38,7 @@ function App() {
       return item.id!==id
     }); 
     setTodos(newTodos) 
-    saveToLS()
+    // saveToLS()
   }
 
   const handleDelete= (e, id)=>{  
@@ -45,13 +46,13 @@ function App() {
       return item.id!==id
     }); 
     setTodos(newTodos) 
-    saveToLS()
+    // saveToLS()
   }
 
   const handleAdd= ()=>{
     setTodos([...todos, {id: uuidv4(), todo, isCompleted: false}])
+    // localStorage.setItem("todos", JSON.stringify(todos))
     setTodo("") 
-    saveToLS()
   }
   
   const handleChange= (e)=>{ 
@@ -66,7 +67,7 @@ function App() {
     let newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
     setTodos(newTodos)
-    saveToLS()
+    // saveToLS()
   }
   
 
